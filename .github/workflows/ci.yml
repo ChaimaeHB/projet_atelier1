@@ -38,3 +38,6 @@ jobs:
       # 5. Lancer l’analyse statique (PHPStan)
       - name: Run Static Analysis (PHPStan)
         run: composer analyse
+      -name: Run PHPUnit tests
+       run: composer test
+
