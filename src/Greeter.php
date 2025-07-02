@@ -9,4 +9,3 @@ class Greeter
         return 'Hello from src!';
     }
 }
-?>
