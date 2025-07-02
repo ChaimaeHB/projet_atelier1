@@ -1,5 +1,4 @@
 name: PHP Quality Assurance
-
 on:
   push:
     branches: [ "master" ]
