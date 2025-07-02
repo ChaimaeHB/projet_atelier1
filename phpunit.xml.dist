@@ -1,7 +1,6 @@
 <phpunit bootstrap="vendor/autoload.php"
          colors="true"
          verbose="true">
-         
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory>./tests</directory>
@@ -12,7 +11,9 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <report>
+            <html outputDirectory="build/coverage"/>
+        </report>
     </coverage>
-
 </phpunit>
 
