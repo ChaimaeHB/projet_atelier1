@@ -15,5 +15,10 @@
             <html outputDirectory="build/coverage"/>
         </report>
     </coverage>
+    <filter>
+     <whitelist>
+      <directory suffix=".php">src</directory>
+     </whitelist>
+  </filter>
 </phpunit>
 
