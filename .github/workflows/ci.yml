@@ -1,0 +1,38 @@
+# Nom du workflow qui apparaîtra dans l’onglet "Actions" de GitHub.
+name: PHP Quality Assurance
+
+# Déclencheurs : Quand ce workflow doit-il s’exécuter ?
+on:
+  push:
+    branches: [ "main" ] # À chaque `git push` sur la branche `main`.
+  pull_request:
+    branches: [ "main" ] # À chaque création/mise à jour d'une Pull Request vers `main`.
+
+# Jobs : Les tâches à effectuer. Un workflow peut avoir plusieurs jobs.
+jobs:
+  build:
+    runs-on: ubuntu-latest # On utilise une machine Linux Ubuntu récente.
+
+    steps:
+      # 1. Récupérer le code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Installer PHP et Composer
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+
+      # 3. Installer les dépendances
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      # 4. Lancer le linter (PHP-CS-Fixer en dry-run)
+      - name: Run Linter (PHP-CS-Fixer)
+        run: composer lint
+
+      # 5. Lancer l’analyse statique (PHPStan)
+      - name: Run Static Analysis (PHPStan)
+        run: composer analyse
